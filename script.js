@@ -14,33 +14,29 @@ class Myship extends Ships {
     this.accuracy = 0.7;
   }
 
-  attackAl = function (alienHull) {
-    if (alienHull > this.firepower) {
-      alienHull = alienHull - this.firepower;
-      //   console.log(alienHull);
-      Alien.attackShip();
-    } else if (alienHull > 0) {
-      while (alienhull) {
-        alienHull - this.firepower;
+  attackAlien = function (obj) {
+    if (Math.random() < this.accuracy) {
+      if (obj.hull > this.firepower) {
+        obj.hull = obj.hull - this.firepower;
+        console.log(obj.hull);
+      } else if (obj.hull < this.firepower || obj.hul === this.firepower) {
+        console.log(`You destroyed the enemy ship!`);
       }
-    } else alienHull < this.firepower;
-    console.log("you've destroyed an alien ship!!!");
+    } else console.log("you missed the enemy ship!!! Prepare for attack!!!");
   };
 }
 class Alien extends Ships {
   constructor() {
     super();
-    this.hull = Math.floor(Math.random() * 6) + 3;
-    // this.hull = Math.random();
-    this.firepower = Math.floor(Math.random() * 4) + 2;
-    this.accuracy = Math.random() + 0.6;
+    this.hull = Math.floor(Math.random() * 4) + 3;
+    this.firepower = Math.floor(Math.random() * 3) + 2;
+    this.accuracy = Math.floor(Math.random() * 0.3) + 0.6;
   }
 
   attackShip(myshipHull) {
     if (myshipHull > this.firepower) {
       myshipHull = myshipHull - this.firepower;
       console.log(`Enemy Attacked and caused ${this.firepower} damage`);
-      return;
     } else if (myshipHull < this.firepower) {
       console.log("The enemy has defeated you");
     }
@@ -57,15 +53,14 @@ class Alien extends Ships {
 }
 
 const ussPerScholas = new Myship();
-// console.log(ussPerScholas);
+console.log(ussPerScholas);
 const sith = new Alien();
 console.log(sith);
 const answer = window.prompt("Attack?");
 console.log(answer);
 if (answer === "yes") {
-  ussPerScholas.attackAl(sith.hull);
+  ussPerScholas.attackAlien(sith);
 }
-console.log(sith);
 
 // let yourAttack = window.prompt("You destroyed a ship!!! Continue: yes or no?");
 // console.log(yourAttack);
