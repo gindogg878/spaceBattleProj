@@ -55,27 +55,8 @@ class Myship extends Ships {
     this.firepower = 5;
     this.accuracy = 0.7;
   }
-
-  // attackAlien = function (obj) {
-  //   if (Math.random() < this.accuracy) {
-  //     if (obj.hull > this.firepower) {
-  //       let newHull = 0;
-  //       newHull = obj.hull - this.firepower;
-  //       console.log(newHull);
-  //       console.log(`Enemy survived attack!! Prepare for an attack!!!`);
-  //       //does not recognize ship//
-  //       // obj.attackShip(Myship);
-  //       return newHull;
-  //     } else if (obj.hull < this.firepower || obj.hull === this.firepower) {
-  //       console.log(`You destroyed the enemy ship!`);
-  //       return;
-  //     }
-  //   } else {
-  //     console.log("you missed the enemy ship!!! Prepare for attack!!!");
-  //     obj.attackShip(Myship);
-  //   }
-  // };
 }
+
 class Alien extends Ships {
   constructor() {
     super();
@@ -89,25 +70,6 @@ class Alien extends Ships {
   //   const tieFighter = new Alien();
   //   this.aliens.push(tieFighter);
   // }
-
-  //   attackShip(obj) {
-  //     if (Math.random() < this.accuracy) {
-  //       if (obj.hull > this.firepower) {
-  //         let newHull = 0;
-  //         newHull = obj.hull - this.firepower;
-  //         // console.log(`Enemy Attacked and caused ${this.firepower} damage`);
-  //         return newHull;
-  //         //throws error does not recognize function/ 3/17-303pm//
-  //         // obj.attackAlien.bind(Alien);
-  //       } else if (obj.hull < this.firepower) {
-  //         console.log("The enemy has defeated you");
-  //       }
-  //     } else {
-  //       console.log("Enemy missed!!! ATTACK!!!");
-  //       // says it cant recognize function
-  //       // obj.attackAlien();
-  //     }
-  //   }
 }
 
 const ussPerScholas = new Myship();
@@ -117,18 +79,5 @@ console.log(sith);
 let answer = window.prompt("Attack?");
 console.log(answer);
 if (answer === "yes") {
-  let result = ussPerScholas.attackAlien(sith);
-  if (result > 0) {
-    // console.log("Enemy survived attack! Prepare for an enemy attack");
-    let result2 = sith.attackShip(ussPerScholas);
-    if (result > 0) {
-      console.log(
-        `Enemy Attacked and caused ${sith.firepower} damage. We will counter attack!!!`
-      );
-      ussPerScholas.attackAlien(sith);
-    }
-  } else {
-    // answer = window.prompt("Continue to attack?");
-    result = ussPerScholas.attackAlien(sith);
-  }
+  ussPerScholas.attack(ussPerScholas, sith);
 }
